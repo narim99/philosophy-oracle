@@ -1,7 +1,7 @@
 {
   "name": "sep",
   "displayName": "PHILOSOPHY · ORACLE",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "SEP(스탠퍼드 철학 백과) 기반 철학 오라클 — 질문분석→팀조사→인간감독→분석·토론→작성→검증→확장 조사까지 ①~⑬ 단일 파이프라인(/oracle). ⑦에서 근거 항목들의 관계망·연대·담론분포를 답변 안에 렌더링하고, 확장 시 논문마다 정독가를 병렬로 붙여 본문까지 읽는다. SEP 위치찾기(/locate) 포함. 자체 SEP MCP(한→영 사전·어휘/의미검색·원문 verbatim 발췌·관계망·기록) 번들.",
   "author": {
     "name": "narim"
