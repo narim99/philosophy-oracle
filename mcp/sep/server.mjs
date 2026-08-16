@@ -724,8 +724,9 @@ async function sepAnswer({ run_id, question, body, section, verdict }) {
   const now = stamp();
   const file = path.join(LOG_DIR, `answer-${run_id}.md`);
   const title = section || 'SEP 근거 답변';
+  const isFirst = !fs.existsSync(file);
 
-  if (!fs.existsSync(file)) {
+  if (isFirst) {
     fs.writeFileSync(file,
       `# ${question || '(질문 미기재)'}\n\n` +
       `> PHILOSOPHY · ORACLE — ${now.human}\n` +
@@ -736,8 +737,21 @@ async function sepAnswer({ run_id, question, body, section, verdict }) {
   if (verdict) chunk += `\n### 검증\n\n${verdict}\n`;
   fs.appendFileSync(file, chunk);
 
+  // ⚠ 다음에 할 일을 도구가 직접 돌려준다.
+  //
+  // ⑧ 게이트(확장 경로를 물을지)를 스킬 문서의 경고만으로 지키게 했더니 실제 실행에서
+  // 생략됐다(2026-08-16 실측: ⑦ 답변만 내놓고 끝냄 → 사용자가 선택권을 잃었다).
+  // 프롬프트를 강하게 쓰는 방식은 이미 다른 항목에서 3회 연속 실패한 전례가 있다.
+  // 그래서 **⑦에서 반드시 호출하는 이 도구의 응답 자체**에 다음 지시를 실어 보낸다.
+  // 문서를 잊어도 도구 결과가 눈앞에 있으므로 흐름이 끊기지 않는다.
+  const next_step = isFirst
+    ? '⚠ 아직 끝이 아니다. ⑧ 확장 경로 게이트를 **지금 띄워라** — A 간극·B 철학 내 타 분과·C 철학 외 분과 후보를 본문 표로 낸 뒤 AskUserQuestion(종료 선택지 포함). 멈출지 말지는 사용자가 정한다. ⚠ 파일은 **아직 보내지 마라** — 사용자가 「여기서 종료」를 고르면 그때 두 파일을 함께 보낸다.'
+    : '⚠ 확장 답변까지 기록됐다. 이제 ⑭ 교훈 기록(`sep_lesson { action: "add" }`)을 하고, **그다음 SendUserFile로 이 결과물과 과정 기록 두 파일을 함께** 보내라. 여기가 실행이 끝나는 자리다.';
+
   return {
     run_id, path: file, section: title, bytes: fs.statSync(file).size,
+    stage: isFirst ? '⑦ SEP 근거 답변 기록됨' : '확장 답변 기록됨',
+    next_step,
     note: '결과물 파일이다(과정 기록은 별도). 확장 답변이 나오면 같은 run_id로 다시 호출해 section을 붙여라.',
   };
 }
