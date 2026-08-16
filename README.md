@@ -81,6 +81,8 @@ sep/
   agents/                      10개 서브에이전트(Agent 1·SEP팀3·Agent2/3·Agent4·정독가·확장팀3)
   skills/sep-retrieval/        SEP MCP 사용 규칙 + 리다이렉션 URL 규칙
   mcp/sep/                     자체 SEP MCP 서버(server.mjs·run.sh)
+  mcp/sep/data/                동봉 SEP 데이터 — 외부 DB 불필요
+  mcp/sep/refresh.mjs          DB를 고쳤을 때 데이터 갱신
   .mcp.json                    MCP 선언 3개(sep·scientific-papers·academix)
 ```
 
@@ -214,6 +216,37 @@ claude --plugin-dir ./plugins/sep
 
 동점 정렬은 slug로 끊어 **같은 질의가 항상 같은 순서**를 낸다.
 
-### 데이터를 다시 만들려면
+### DB를 고쳤으면 — 데이터 갱신하기
 
-`mcp/sep/build_lexicon.mjs`가 한→영 사전을 만든다. 항목·엣지 데이터는 원본 SEP 분석 결과에서 덤프한 스냅숏이다.
+동봉 데이터는 **받아온 시점에 굳어 있다.** Supabase에서 항목을 추가하거나 설명을 고쳤다면 다시 받아와야 플러그인이 안다.
+
+```bash
+node mcp/sep/refresh.mjs
+```
+
+이 한 줄이면 끝난다. 무엇이 달라졌는지(새로 생긴 항목·없어진 항목·수정된 항목) 먼저 알려주고 갱신한다.
+
+받아만 보고 확인하려면:
+
+```bash
+node mcp/sep/refresh.mjs --check
+```
+
+**접속 정보는 저장소에 두지 않는다.** 홈 폴더에 한 번만 만들어 두면 다음부터는 그냥 실행하면 된다.
+
+```bash
+mkdir -p ~/.claude/philosophy-oracle
+echo '{"url":"https://<프로젝트>.supabase.co","key":"<키>"}' > ~/.claude/philosophy-oracle/supabase.json
+chmod 600 ~/.claude/philosophy-oracle/supabase.json
+```
+
+(환경변수 `SEP_SUPABASE_URL`·`SEP_SUPABASE_KEY`로 줘도 된다.)
+
+알아 둘 것:
+
+- **갱신 후 Claude Code를 재시작해야** 새 데이터를 읽는다.
+- 새 파일을 다 쓴 뒤 마지막에 한꺼번에 바꿔치기하므로, **중간에 실패해도 기존 데이터는 그대로** 남는다.
+- **`atlas.json`은 건드리지 않는다** — DB가 아니라 `sep_analysis/atlas.html`의 큐레이션본에서 온 것이다. ATLAS를 고쳤다면 그건 따로 다시 뽑아야 한다.
+- 갱신한 데이터를 저장소에도 반영하려면 평소처럼 `git add -A && git commit && git push`.
+
+한→영 사전은 `mcp/sep/build_lexicon.mjs`가 따로 만든다.
