@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "sep": {
+      "command": "bash",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp/sep/run.sh"]
+    },
+    "scientific-papers": {
+      "command": "npx",
+      "args": ["-y", "@futurelab-studio/latest-science-mcp@latest"]
+    },
+    "academix": {
+      "command": "uvx",
+      "args": [
+        "--python", "3.12",
+        "--with", "mcp<2",
+        "--from", "git+https://github.com/xingyulu23/Academix.git",
+        "academix"
+      ],
+      "env": {
+        "ACADEMIX_EMAIL": "",
+        "SEMANTIC_SCHOLAR_API_KEY": ""
+      }
+    }
+  }
+}

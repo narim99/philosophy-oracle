@@ -1,0 +1,1382 @@
+{
+ "_meta": {
+  "generated_by": "build_lexicon.mjs",
+  "sources": [
+   "sep_analysis/cosmos.html (KO_EN·PHIL_KO·DISC_KO)",
+   "ADDITIONS in build_lexicon.mjs"
+  ],
+  "note": "값의 첫 항목이 대표 영어어. 키는 긴 것부터 정렬되어 있어 부분문자열 오매칭을 줄인다."
+ },
+ "concepts": {
+  "자유의지와 도덕적 책임": [
+   "moral responsibility",
+   "free will"
+  ],
+  "과학적 실재론": [
+   "scientific realism"
+  ],
+  "존재론적 개입": [
+   "ontological commitment",
+   "Quine"
+  ],
+  "인식적 부정의": [
+   "epistemic injustice"
+  ],
+  "거짓말쟁이역설": [
+   "liar paradox"
+  ],
+  "존재론적 논증": [
+   "ontological arguments"
+  ],
+  "우주론적 논증": [
+   "cosmological argument"
+  ],
+  "공약불가능성": [
+   "incommensurability",
+   "Kuhn",
+   "scientific revolutions"
+  ],
+  "오류가능주의": [
+   "fallibilism"
+  ],
+  "확장된 마음": [
+   "the extended mind thesis",
+   "embodied cognition"
+  ],
+  "도덕반실재론": [
+   "moral anti-realism"
+  ],
+  "도덕적 책임": [
+   "moral responsibility"
+  ],
+  "번역불확정성": [
+   "indeterminacy of translation",
+   "Quine"
+  ],
+  "직관주의논리": [
+   "intuitionistic logic"
+  ],
+  "불완전성정리": [
+   "Gödel’s incompleteness theorems"
+  ],
+  "악의 문제": [
+   "problem of evil",
+   "the problem of evil"
+  ],
+  "인간 본성": [
+   "human nature"
+  ],
+  "이데올로기": [
+   "ideology",
+   "Marx"
+  ],
+  "포스트모던": [
+   "postmodernism"
+  ],
+  "반증가능성": [
+   "falsifiability",
+   "demarcation",
+   "Popper"
+  ],
+  "이론적재성": [
+   "theory-ladenness",
+   "observation"
+  ],
+  "인격동일성": [
+   "personal identity"
+  ],
+  "양립가능론": [
+   "compatibilism",
+   "free will"
+  ],
+  "진리대응론": [
+   "correspondence theory of truth"
+  ],
+  "사회인식론": [
+   "social epistemology"
+  ],
+  "베이즈주의": [
+   "Bayesian epistemology",
+   "Bayes theorem"
+  ],
+  "심신이원론": [
+   "dualism"
+  ],
+  "개인동일성": [
+   "personal identity"
+  ],
+  "메타윤리학": [
+   "metaethics",
+   "moral realism",
+   "moral anti-realism"
+  ],
+  "규범윤리학": [
+   "normative ethics"
+  ],
+  "도덕실재론": [
+   "moral realism"
+  ],
+  "공동체주의": [
+   "communitarianism"
+  ],
+  "시민불복종": [
+   "civil disobedience"
+  ],
+  "고정지시어": [
+   "rigid designators",
+   "Kripke"
+  ],
+  "신존재증명": [
+   "ontological arguments",
+   "cosmological argument",
+   "teleological arguments"
+  ],
+  "자유의지": [
+   "free will",
+   "determinism",
+   "freedom of will",
+   "compatibilism",
+   "incompatibilist theories of free will"
+  ],
+  "자유주의": [
+   "liberalism"
+  ],
+  "결과주의": [
+   "consequentialism"
+  ],
+  "아름다움": [
+   "beauty",
+   "aesthetics"
+  ],
+  "가능세계": [
+   "possible worlds",
+   "modality"
+  ],
+  "형이상학": [
+   "metaphysics"
+  ],
+  "민주주의": [
+   "democracy"
+  ],
+  "사회계약": [
+   "social contract",
+   "contractarianism",
+   "contemporary approaches to the social contract"
+  ],
+  "페미니즘": [
+   "feminism",
+   "gender",
+   "feminist philosophy"
+  ],
+  "구조주의": [
+   "structuralism"
+  ],
+  "패러다임": [
+   "paradigm",
+   "scientific revolutions",
+   "Kuhn"
+  ],
+  "정상과학": [
+   "normal science",
+   "Kuhn"
+  ],
+  "과학혁명": [
+   "scientific revolutions",
+   "Kuhn"
+  ],
+  "구획문제": [
+   "demarcation",
+   "pseudo-science"
+  ],
+  "도구주의": [
+   "instrumentalism",
+   "scientific realism"
+  ],
+  "미결정성": [
+   "underdetermination",
+   "underdetermination of scientific theory"
+  ],
+  "환원주의": [
+   "reductionism",
+   "scientific reduction"
+  ],
+  "반실재론": [
+   "anti-realism",
+   "realism",
+   "idealism"
+  ],
+  "인과관계": [
+   "causation",
+   "counterfactual theories of causation"
+  ],
+  "내재주의": [
+   "internalism and externalism in epistemology"
+  ],
+  "외재주의": [
+   "internalism and externalism in epistemology",
+   "externalism about mental content"
+  ],
+  "덕인식론": [
+   "virtue epistemology"
+  ],
+  "회의주의": [
+   "skepticism",
+   "ancient skepticism",
+   "medieval skepticism"
+  ],
+  "심신문제": [
+   "the mind/brain identity theory",
+   "dualism",
+   "physicalism"
+  ],
+  "물리주의": [
+   "physicalism"
+  ],
+  "기능주의": [
+   "functionalism"
+  ],
+  "행동주의": [
+   "behaviorism"
+  ],
+  "명제태도": [
+   "propositional attitude reports"
+  ],
+  "타심문제": [
+   "other minds"
+  ],
+  "인공지능": [
+   "artificial intelligence",
+   "the Chinese room argument"
+  ],
+  "계산주의": [
+   "computational theory of mind"
+  ],
+  "연결주의": [
+   "connectionism"
+  ],
+  "체화인지": [
+   "embodied cognition"
+  ],
+  "응용윤리": [
+   "applied ethics"
+  ],
+  "공리주의": [
+   "consequentialism",
+   "utilitarianism",
+   "rule consequentialism"
+  ],
+  "정언명법": [
+   "Kant’s moral philosophy",
+   "categorical imperative",
+   "Kant"
+  ],
+  "가언명법": [
+   "hypothetical imperatives",
+   "Kant’s moral philosophy"
+  ],
+  "정서주의": [
+   "moral cognitivism vs. non-cognitivism",
+   "expressivism"
+  ],
+  "상대주의": [
+   "moral relativism",
+   "relativism"
+  ],
+  "이기주의": [
+   "egoism"
+  ],
+  "이타주의": [
+   "altruism",
+   "empathy"
+  ],
+  "돌봄윤리": [
+   "feminist ethics",
+   "the ethics of care"
+  ],
+  "생명윤리": [
+   "bioethics",
+   "theory and bioethics"
+  ],
+  "환경윤리": [
+   "environmental ethics"
+  ],
+  "동물윤리": [
+   "the moral status of animals",
+   "animal ethics"
+  ],
+  "분배정의": [
+   "distributive justice"
+  ],
+  "공화주의": [
+   "republicanism"
+  ],
+  "식민주의": [
+   "colonialism",
+   "postcolonialism"
+  ],
+  "언어철학": [
+   "philosophy of language"
+  ],
+  "기술이론": [
+   "descriptions",
+   "Russell"
+  ],
+  "사적언어": [
+   "private language",
+   "Wittgenstein"
+  ],
+  "언어게임": [
+   "Wittgenstein",
+   "private language"
+  ],
+  "양상논리": [
+   "modal logic"
+  ],
+  "취미판단": [
+   "aesthetic judgment",
+   "Kant’s aesthetics"
+  ],
+  "종교철학": [
+   "philosophy of religion"
+  ],
+  "실존주의": [
+   "existentialism"
+  ],
+  "실용주의": [
+   "pragmatism",
+   "Peirce",
+   "Dewey"
+  ],
+  "분석철학": [
+   "analytic philosophy",
+   "analysis"
+  ],
+  "대륙철학": [
+   "continental philosophy"
+  ],
+  "인식론": [
+   "epistemology"
+  ],
+  "정당화": [
+   "justification",
+   "epistemic justification",
+   "foundationalist theories of epistemic justification"
+  ],
+  "무의식": [
+   "unconscious"
+  ],
+  "정체성": [
+   "personal identity",
+   "identity"
+  ],
+  "동일성": [
+   "identity",
+   "personal identity",
+   "relative identity"
+  ],
+  "현상학": [
+   "phenomenology",
+   "Husserl"
+  ],
+  "해석학": [
+   "hermeneutics",
+   "Gadamer"
+  ],
+  "자연종": [
+   "natural kinds"
+  ],
+  "개연성": [
+   "probability",
+   "interpretations of probability"
+  ],
+  "실재론": [
+   "realism",
+   "scientific realism",
+   "moral realism"
+  ],
+  "유명론": [
+   "nominalism",
+   "universals"
+  ],
+  "보편자": [
+   "universals",
+   "properties",
+   "nominalism"
+  ],
+  "개별자": [
+   "particulars",
+   "tropes"
+  ],
+  "필연성": [
+   "necessity",
+   "modality"
+  ],
+  "우연성": [
+   "contingency",
+   "modality"
+  ],
+  "결정론": [
+   "causal determinism",
+   "determinism",
+   "free will"
+  ],
+  "정합론": [
+   "coherence theory of truth",
+   "coherentism"
+  ],
+  "토대론": [
+   "foundationalist theories of epistemic justification",
+   "foundationalism"
+  ],
+  "신뢰론": [
+   "reliabilist epistemology",
+   "reliabilism"
+  ],
+  "게티어": [
+   "the analysis of knowledge",
+   "Gettier"
+  ],
+  "경험론": [
+   "empiricism",
+   "rationalism vs. empiricism"
+  ],
+  "합리론": [
+   "rationalism vs. empiricism",
+   "continental rationalism"
+  ],
+  "감각질": [
+   "qualia",
+   "consciousness"
+  ],
+  "지향성": [
+   "intentionality",
+   "consciousness and intentionality"
+  ],
+  "윤리학": [
+   "ethics",
+   "normative ethics"
+  ],
+  "의무론": [
+   "deontological ethics",
+   "Kant’s moral philosophy"
+  ],
+  "덕윤리": [
+   "virtue ethics",
+   "moral character"
+  ],
+  "규범성": [
+   "normativity",
+   "reasons for action",
+   "moral motivation"
+  ],
+  "도덕운": [
+   "moral luck"
+  ],
+  "정당성": [
+   "legitimacy",
+   "political legitimacy"
+  ],
+  "의미론": [
+   "semantics",
+   "theories of meaning"
+  ],
+  "화용론": [
+   "pragmatics",
+   "implicature"
+  ],
+  "분석성": [
+   "the analytic/synthetic distinction",
+   "Quine"
+  ],
+  "논리학": [
+   "logic",
+   "classical logic"
+  ],
+  "집합론": [
+   "set theory"
+  ],
+  "신정론": [
+   "the problem of evil",
+   "theodicy"
+  ],
+  "무신론": [
+   "atheism and agnosticism"
+  ],
+  "자유": [
+   "freedom",
+   "liberty",
+   "positive and negative liberty"
+  ],
+  "평등": [
+   "equality",
+   "egalitarianism"
+  ],
+  "권리": [
+   "rights"
+  ],
+  "정의": [
+   "justice",
+   "distributive justice"
+  ],
+  "진리": [
+   "truth",
+   "correspondence theory of truth",
+   "coherence theory of truth"
+  ],
+  "진실": [
+   "truth"
+  ],
+  "지식": [
+   "knowledge",
+   "epistemology"
+  ],
+  "인식": [
+   "epistemology",
+   "cognition"
+  ],
+  "믿음": [
+   "belief"
+  ],
+  "신념": [
+   "belief"
+  ],
+  "회의": [
+   "skepticism"
+  ],
+  "마음": [
+   "mind",
+   "philosophy of mind"
+  ],
+  "정신": [
+   "mind",
+   "spirit"
+  ],
+  "의식": [
+   "consciousness",
+   "the hard problem of consciousness"
+  ],
+  "지각": [
+   "perception"
+  ],
+  "감각": [
+   "sensation",
+   "perception"
+  ],
+  "기억": [
+   "memory"
+  ],
+  "상상": [
+   "imagination"
+  ],
+  "감정": [
+   "emotion",
+   "feeling"
+  ],
+  "정서": [
+   "emotion"
+  ],
+  "욕망": [
+   "desire"
+  ],
+  "이성": [
+   "reason",
+   "rationality"
+  ],
+  "합리": [
+   "rationality"
+  ],
+  "자아": [
+   "self"
+  ],
+  "자기": [
+   "self"
+  ],
+  "인격": [
+   "personhood",
+   "person"
+  ],
+  "도덕": [
+   "morality",
+   "ethics"
+  ],
+  "윤리": [
+   "ethics",
+   "morality"
+  ],
+  "선악": [
+   "good",
+   "evil"
+  ],
+  "미덕": [
+   "virtue"
+  ],
+  "의무": [
+   "duty",
+   "deontology"
+  ],
+  "책임": [
+   "responsibility",
+   "moral responsibility"
+  ],
+  "행복": [
+   "happiness",
+   "well-being",
+   "eudaimonia"
+  ],
+  "쾌락": [
+   "pleasure",
+   "hedonism"
+  ],
+  "공리": [
+   "utilitarianism",
+   "utility"
+  ],
+  "미학": [
+   "aesthetics",
+   "aesthetic judgment"
+  ],
+  "예술": [
+   "art",
+   "aesthetics",
+   "the definition of art"
+  ],
+  "숭고": [
+   "sublime",
+   "the sublime"
+  ],
+  "언어": [
+   "language",
+   "philosophy of language"
+  ],
+  "의미": [
+   "meaning",
+   "theories of meaning"
+  ],
+  "지시": [
+   "reference",
+   "names",
+   "rigid designators"
+  ],
+  "논리": [
+   "logic"
+  ],
+  "추론": [
+   "inference",
+   "reasoning"
+  ],
+  "수학": [
+   "mathematics",
+   "philosophy of mathematics"
+  ],
+  "과학": [
+   "science",
+   "philosophy of science"
+  ],
+  "증거": [
+   "evidence",
+   "epistemology of evidence"
+  ],
+  "설명": [
+   "explanation",
+   "scientific explanation"
+  ],
+  "인과": [
+   "causation",
+   "causality",
+   "causal determinism",
+   "the metaphysics of causation"
+  ],
+  "확률": [
+   "probability"
+  ],
+  "시간": [
+   "time",
+   "being and becoming in modern physics"
+  ],
+  "공간": [
+   "space",
+   "absolute and relational theories of space"
+  ],
+  "존재": [
+   "being",
+   "existence",
+   "ontology"
+  ],
+  "실재": [
+   "reality",
+   "realism"
+  ],
+  "실체": [
+   "substance"
+  ],
+  "속성": [
+   "property",
+   "properties"
+  ],
+  "본질": [
+   "essence",
+   "essential vs accidental properties"
+  ],
+  "보편": [
+   "universals"
+  ],
+  "개별": [
+   "particulars"
+  ],
+  "필연": [
+   "necessity"
+  ],
+  "우연": [
+   "contingency"
+  ],
+  "양상": [
+   "modality",
+   "possible worlds",
+   "modal logic"
+  ],
+  "변화": [
+   "change",
+   "persistence"
+  ],
+  "종교": [
+   "religion"
+  ],
+  "신앙": [
+   "faith",
+   "faith and reason"
+  ],
+  "영혼": [
+   "soul"
+  ],
+  "죽음": [
+   "death"
+  ],
+  "불멸": [
+   "immortality"
+  ],
+  "자연": [
+   "nature"
+  ],
+  "생명": [
+   "life",
+   "biology"
+  ],
+  "진화": [
+   "evolution"
+  ],
+  "동물": [
+   "animal ethics",
+   "animals"
+  ],
+  "환경": [
+   "environmental ethics"
+  ],
+  "사회": [
+   "society",
+   "social philosophy"
+  ],
+  "정치": [
+   "political philosophy",
+   "politics"
+  ],
+  "국가": [
+   "state",
+   "sovereignty"
+  ],
+  "권력": [
+   "power",
+   "Foucault"
+  ],
+  "재산": [
+   "property",
+   "property and ownership"
+  ],
+  "노동": [
+   "labor",
+   "work"
+  ],
+  "자본": [
+   "capital"
+  ],
+  "계급": [
+   "class"
+  ],
+  "소외": [
+   "alienation"
+  ],
+  "역사": [
+   "history",
+   "philosophy of history"
+  ],
+  "문화": [
+   "culture"
+  ],
+  "젠더": [
+   "gender"
+  ],
+  "인종": [
+   "race",
+   "philosophy of race"
+  ],
+  "실존": [
+   "existentialism",
+   "existence"
+  ],
+  "반증": [
+   "falsification",
+   "Popper",
+   "demarcation"
+  ],
+  "법칙": [
+   "laws of nature",
+   "ceteris paribus laws"
+  ],
+  "환원": [
+   "reduction",
+   "scientific reduction",
+   "reductionism"
+  ],
+  "창발": [
+   "emergent properties",
+   "emergence"
+  ],
+  "수반": [
+   "supervenience"
+  ],
+  "모형": [
+   "models in science",
+   "scientific models"
+  ],
+  "실험": [
+   "experiment in physics",
+   "scientific experiment"
+  ],
+  "확증": [
+   "confirmation",
+   "Bayesian epistemology"
+  ],
+  "귀납": [
+   "induction",
+   "problem of induction"
+  ],
+  "귀추": [
+   "abduction",
+   "inference to the best explanation"
+  ],
+  "지속": [
+   "persistence",
+   "temporal parts"
+  ],
+  "허구": [
+   "fiction",
+   "fictionalism"
+  ],
+  "증언": [
+   "epistemology of testimony",
+   "testimony"
+  ],
+  "선험": [
+   "a priori justification and knowledge",
+   "a priori"
+  ],
+  "표상": [
+   "mental representation",
+   "representation"
+  ],
+  "권위": [
+   "authority",
+   "political obligation"
+  ],
+  "인권": [
+   "human rights",
+   "rights"
+  ],
+  "함축": [
+   "implicature",
+   "pragmatics"
+  ],
+  "화행": [
+   "speech acts"
+  ],
+  "역설": [
+   "paradoxes",
+   "liar paradox",
+   "Russell’s paradox"
+  ],
+  "괴델": [
+   "Gödel’s incompleteness theorems",
+   "Gödel"
+  ],
+  "무한": [
+   "infinity",
+   "the infinite"
+  ],
+  "재현": [
+   "depiction",
+   "representation"
+  ],
+  "해체": [
+   "deconstruction",
+   "Derrida"
+  ],
+  "앎": [
+   "knowledge"
+  ],
+  "덕": [
+   "virtue"
+  ],
+  "신": [
+   "God",
+   "philosophy of religion"
+  ],
+  "법": [
+   "law",
+   "philosophy of law"
+  ]
+ },
+ "philosophers": {
+  "아리스토텔레스": [
+   "Aristotle"
+  ],
+  "아우구스티누스": [
+   "Augustine"
+  ],
+  "둔스 스코투스": [
+   "Duns Scotus"
+  ],
+  "비트겐슈타인": [
+   "Wittgenstein"
+  ],
+  "마이모니데스": [
+   "Maimonides"
+  ],
+  "호르크하이머": [
+   "Horkheimer"
+  ],
+  "파이어아벤트": [
+   "Feyerabend"
+  ],
+  "소크라테스": [
+   "Socrates"
+  ],
+  "라이프니츠": [
+   "Leibniz"
+  ],
+  "쇼펜하우어": [
+   "Schopenhauer"
+  ],
+  "키르케고르": [
+   "Kierkegaard"
+  ],
+  "에피쿠로스": [
+   "Epicurus"
+  ],
+  "플로티노스": [
+   "Plotinus"
+  ],
+  "보에티우스": [
+   "Boethius"
+  ],
+  "메를로퐁티": [
+   "Merleau-Ponty"
+  ],
+  "데이비드슨": [
+   "Davidson"
+  ],
+  "에라스무스": [
+   "Erasmus"
+  ],
+  "토마스 쿤": [
+   "Kuhn"
+  ],
+  "토머스 쿤": [
+   "Kuhn"
+  ],
+  "맥킨타이어": [
+   "MacIntyre"
+  ],
+  "아베로에스": [
+   "Ibn Rushd"
+  ],
+  "나가르주나": [
+   "Nagarjuna"
+  ],
+  "데카르트": [
+   "Descartes"
+  ],
+  "스피노자": [
+   "Spinoza"
+  ],
+  "마르크스": [
+   "Marx"
+  ],
+  "하이데거": [
+   "Heidegger"
+  ],
+  "사르트르": [
+   "Sartre"
+  ],
+  "아퀴나스": [
+   "Aquinas"
+  ],
+  "하버마스": [
+   "Habermas"
+  ],
+  "안셀무스": [
+   "Anselm"
+  ],
+  "말브랑슈": [
+   "Malebranche"
+  ],
+  "프로이트": [
+   "Freud"
+  ],
+  "아도르노": [
+   "Adorno"
+  ],
+  "보부아르": [
+   "Beauvoir"
+  ],
+  "레비나스": [
+   "Levinas"
+  ],
+  "라카토스": [
+   "Lakatos"
+  ],
+  "암스트롱": [
+   "Armstrong"
+  ],
+  "스트로슨": [
+   "Strawson"
+  ],
+  "누스바움": [
+   "Nussbaum"
+  ],
+  "윌리엄스": [
+   "Williams"
+  ],
+  "아비센나": [
+   "Ibn Sina"
+  ],
+  "이븐시나": [
+   "Ibn Sina"
+  ],
+  "플라톤": [
+   "Plato"
+  ],
+  "버클리": [
+   "Berkeley"
+  ],
+  "프레게": [
+   "Frege"
+  ],
+  "데리다": [
+   "Derrida"
+  ],
+  "키케로": [
+   "Cicero"
+  ],
+  "세네카": [
+   "Seneca"
+  ],
+  "파스칼": [
+   "Pascal"
+  ],
+  "베이컨": [
+   "Bacon"
+  ],
+  "스미스": [
+   "Smith"
+  ],
+  "제임스": [
+   "James"
+  ],
+  "촘스키": [
+   "Chomsky"
+  ],
+  "가다머": [
+   "Gadamer"
+  ],
+  "벤야민": [
+   "Benjamin"
+  ],
+  "아렌트": [
+   "Arendt"
+  ],
+  "들뢰즈": [
+   "Deleuze"
+  ],
+  "크립키": [
+   "Kripke"
+  ],
+  "퍼트넘": [
+   "Putnam"
+  ],
+  "차머스": [
+   "Chalmers"
+  ],
+  "네이글": [
+   "Nagel"
+  ],
+  "드워킨": [
+   "Dworkin"
+  ],
+  "카르납": [
+   "Carnap"
+  ],
+  "몽테뉴": [
+   "Montaigne"
+  ],
+  "볼테르": [
+   "Voltaire"
+  ],
+  "퍼트남": [
+   "Putnam"
+  ],
+  "루이스": [
+   "Lewis"
+  ],
+  "오스틴": [
+   "Austin"
+  ],
+  "에이어": [
+   "Ayer"
+  ],
+  "리쾨르": [
+   "Ricoeur"
+  ],
+  "테일러": [
+   "Taylor"
+  ],
+  "앤스컴": [
+   "Anscombe"
+  ],
+  "피어스": [
+   "Peirce"
+  ],
+  "셀라스": [
+   "Sellars"
+  ],
+  "브랜덤": [
+   "Brandom"
+  ],
+  "왕양명": [
+   "Wang Yangming"
+  ],
+  "칸트": [
+   "Kant"
+  ],
+  "로크": [
+   "Locke"
+  ],
+  "니체": [
+   "Nietzsche"
+  ],
+  "헤겔": [
+   "Hegel"
+  ],
+  "러셀": [
+   "Russell"
+  ],
+  "콰인": [
+   "Quine"
+  ],
+  "후설": [
+   "Husserl"
+  ],
+  "푸코": [
+   "Foucault"
+  ],
+  "벤담": [
+   "Bentham"
+  ],
+  "롤스": [
+   "Rawls"
+  ],
+  "홉스": [
+   "Hobbes"
+  ],
+  "루소": [
+   "Rousseau"
+  ],
+  "포퍼": [
+   "Popper"
+  ],
+  "공자": [
+   "Confucius"
+  ],
+  "노자": [
+   "Laozi"
+  ],
+  "오컴": [
+   "Ockham"
+  ],
+  "듀이": [
+   "Dewey"
+  ],
+  "퍼스": [
+   "Peirce"
+  ],
+  "다윈": [
+   "Darwin"
+  ],
+  "뉴턴": [
+   "Newton"
+  ],
+  "괴델": [
+   "Gödel"
+  ],
+  "튜링": [
+   "Turing"
+  ],
+  "라캉": [
+   "Lacan"
+  ],
+  "데닛": [
+   "Dennett"
+  ],
+  "노직": [
+   "Nozick"
+  ],
+  "싱어": [
+   "Singer"
+  ],
+  "헴펠": [
+   "Hempel"
+  ],
+  "설리": [
+   "Searle"
+  ],
+  "포더": [
+   "Fodor"
+  ],
+  "무어": [
+   "Moore"
+  ],
+  "라일": [
+   "Ryle"
+  ],
+  "하트": [
+   "Hart"
+  ],
+  "파핏": [
+   "Parfit"
+  ],
+  "로티": [
+   "Rorty"
+  ],
+  "주희": [
+   "Zhu Xi"
+  ],
+  "맹자": [
+   "Mencius"
+  ],
+  "순자": [
+   "Xunzi"
+  ],
+  "장자": [
+   "Zhuangzi"
+  ],
+  "묵자": [
+   "Mozi"
+  ],
+  "흄": [
+   "Hume"
+  ],
+  "밀": [
+   "Mill"
+  ],
+  "쿤": [
+   "Kuhn"
+  ],
+  "설": [
+   "Searle"
+  ],
+  "센": [
+   "Sen"
+  ],
+  "풋": [
+   "Foot"
+  ]
+ },
+ "disciplines": {
+  "컴퓨터과학철학": [
+   "philosophy of computer science"
+  ],
+  "사회과학철학": [
+   "philosophy of social science"
+  ],
+  "과학기술학": [
+   "science and technology studies"
+  ],
+  "생물학철학": [
+   "philosophy of biology"
+  ],
+  "물리학철학": [
+   "philosophy of physics"
+  ],
+  "심리학철학": [
+   "philosophy of psychology"
+  ],
+  "형이상학": [
+   "metaphysics"
+  ],
+  "심리철학": [
+   "philosophy of mind"
+  ],
+  "언어철학": [
+   "philosophy of language"
+  ],
+  "과학철학": [
+   "philosophy of science"
+  ],
+  "정치철학": [
+   "political philosophy"
+  ],
+  "종교철학": [
+   "philosophy of religion"
+  ],
+  "수리철학": [
+   "philosophy of mathematics"
+  ],
+  "사회철학": [
+   "social philosophy"
+  ],
+  "기술철학": [
+   "philosophy of technology"
+  ],
+  "경제철학": [
+   "philosophy of economics"
+  ],
+  "역사철학": [
+   "philosophy of history"
+  ],
+  "교육철학": [
+   "philosophy of education"
+  ],
+  "의학철학": [
+   "philosophy of medicine"
+  ],
+  "인지과학": [
+   "cognitive science"
+  ],
+  "메타철학": [
+   "metaphilosophy"
+  ],
+  "인식론": [
+   "epistemology"
+  ],
+  "윤리학": [
+   "ethics"
+  ],
+  "논리학": [
+   "logic"
+  ],
+  "법철학": [
+   "philosophy of law"
+  ],
+  "미학": [
+   "aesthetics"
+  ]
+ }
+}
