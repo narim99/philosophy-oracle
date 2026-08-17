@@ -88,11 +88,19 @@ sep/
 
 ## 설치
 
-이 저장소 루트가 곧 로컬 마켓플레이스다(`.claude-plugin/marketplace.json`).
+```bash
+claude plugin marketplace add narim99/philosophy-oracle
+claude plugin install sep@philosophy-oracle
+```
+
+설치하면 Claude Code를 한 번 재시작해야 MCP 서버와 훅이 붙는다.
+
+**직접 받아서 쓰려면** 저장소를 클론한 뒤 그 경로를 마켓플레이스로 등록한다.
 
 ```bash
-claude plugin marketplace add "/Users/hwangmiran/Philosophical Work"
-claude plugin install sep@sep-local
+git clone https://github.com/narim99/philosophy-oracle.git
+claude plugin marketplace add ./philosophy-oracle
+claude plugin install sep@philosophy-oracle
 ```
 
 설치본은 `~/.claude/plugins/cache/sep-local/sep/<version>/`에 **복사**된다. 따라서 이 폴더의 파일을 고쳐도 **자동 반영되지 않는다** — 고친 뒤 아래를 돌리고 세션을 재시작하라.

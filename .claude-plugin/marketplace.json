@@ -1,0 +1,15 @@
+{
+  "name": "philosophy-oracle",
+  "owner": {
+    "name": "narim99",
+    "url": "https://github.com/narim99"
+  },
+  "description": "PHILOSOPHY · ORACLE — SEP(스탠퍼드 철학 백과)를 근거로 철학 질문에 답하는 플러그인 마켓플레이스",
+  "plugins": [
+    {
+      "name": "sep",
+      "source": "./",
+      "description": "SEP 기반 철학 오라클 — 질문분석→팀조사→인간감독→분석·토론→작성→검증→확장까지 한 흐름으로. 자립형이라 외부 DB도 API 키도 필요 없다."
+    }
+  ]
+}
