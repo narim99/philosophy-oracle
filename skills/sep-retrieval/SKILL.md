@@ -9,7 +9,7 @@ SEP 데이터(1,719개 항목·31,001개 관계)는 Supabase에 있고, 브라�
 접근은 **플러그인에 번들된 `sep` MCP 서버**로 한다 — 인코딩·풀 필터·verbatim 보장을 서버가 처리하므로 curl로 직접 치지 마라.
 
 도구 이름은 호스트가 `mcp__plugin_sep_sep__sep_search` 처럼 네임스페이싱한다.
-**이름 전체를 외우지 말고 `sep_log`·`sep_answer`·`sep_lexicon`·`sep_search`·`sep_semantic`·`sep_excerpt`·`sep_source`·`sep_evidence_view`·`sep_atlas`·`sep_neighbors`가 들어간 도구를 찾아 쓰라.**
+**이름 전체를 외우지 말고 `sep_log`·`sep_answer`·`sep_lexicon`·`sep_search`·`sep_fulltext`·`sep_semantic`·`sep_excerpt`·`sep_source`·`sep_evidence_view`·`sep_atlas`·`sep_neighbors`가 들어간 도구를 찾아 쓰라.**
 
 ## 도구 10개
 
@@ -19,6 +19,7 @@ SEP 데이터(1,719개 항목·31,001개 관계)는 Supabase에 있고, 브라�
 | `sep_answer` | **결과물 파일** — 답변만 담긴 `answer-<id>.md` | ⑦·⑬에서 호출 |
 | `sep_lexicon` | **한→영 표제어 사전 조회**(키 392개) | Agent 1이 검색어 만들기 **전에** 호출 |
 | `sep_search` | **어휘검색**. 동의어 여러 개를 `terms` 배열로 한 번에 던진다 | 풀 필터·인코딩·**한국어 자동확장**을 서버가 처리 |
+| `sep_fulltext` | **영어 본문 전문 검색**(1,719건 동봉). 표제어가 아닌 논증·사례·인물 언급을 찾는다 | 본문은 영어 — 한국어는 사전으로 바뀌어야 걸린다 |
 | `sep_semantic` | **의미검색**. 한국어 질문을 그대로 넣어도 영어 항목과 매칭 | 첫 호출만 모델 로드로 느림 |
 | `sep_excerpt` | DB의 **한국어 요약**(ko_desc)에서 문장 발췌 | 빠름. **영어 원문이 아니다** |
 | `sep_source` | **SEP 원문 페이지에서 영어 verbatim 문장 + 딥링크** | 네트워크 요청이라 느림 |
@@ -74,6 +75,10 @@ sep_lexicon { terms: ["공약불가능성","실재론","쿤"] }
 0. **`sep_lexicon` 먼저**(Agent 1) — 한국어를 사전 표현으로 고정한 뒤 검색어를 만든다.
 1. **`sep_search`** — Agent 1이 준 영어 용어를 **한 배열에 모두** 넣어 1회 호출한다(용어마다 따로 호출하지 마라).
 2. **0건이거나 빈약하면 `sep_semantic`** — 어휘가 안 겹치는 경우가 진짜 병목이다. 한국어 원 질문을 그대로 넣어라.
+3. **찾는 것이 표제어가 아니면 `sep_fulltext`** — `sep_search`는 제목·한국어설명·주제만 본다. **본문에서만 논의되는 것은 안 걸린다.**
+   특정 논증·사례·인물이 *어느 항목에서 다뤄지는지* 알고 싶을 때 쓴다. 실측: `Fresnel`로 검색하면 `Structural Realism`(4회)·
+   `Realism and Theory Change in Science`(3회)가 나오는데, 이 둘은 `sep_search`로는 절대 안 나온다(제목에도 설명에도 그 이름이 없다).
+   `require_all: true`를 주면 검색어가 **전부** 나오는 항목만 걸러진다 — 두 개념이 실제로 함께 논의되는 자리를 찾을 때 유용하다.
 3. 후보가 정해지면 근거 문장을 받는다 — **답변에 영어 원문을 인용하거나 출처 딥링크를 붙일 거면 `sep_source`**, 한국어 서술 근거만 필요하면 `sep_excerpt`.
 
 ## ⚠ 근거 인용에서 반드시 지킬 것

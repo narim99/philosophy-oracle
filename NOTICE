@@ -1,0 +1,57 @@
+PHILOSOPHY · ORACLE
+Copyright 2026 narim99
+
+This product includes software developed by narim99, licensed under the
+Apache License, Version 2.0 (see LICENSE).
+
+
+================================================================================
+THIRD-PARTY CONTENT — NOT COVERED BY THE APACHE LICENSE
+================================================================================
+
+The Apache License above applies to the SOFTWARE in this repository: the MCP
+server, the agents, the commands, the skills, and the build scripts.
+
+It does NOT apply to the bundled encyclopedia content described below. That
+content is the copyrighted work of its respective authors and is redistributed
+here for research and personal scholarly use. Anyone reusing this repository is
+responsible for their own compliance.
+
+
+Stanford Encyclopedia of Philosophy (SEP) — entry text
+------------------------------------------------------
+  Location : mcp/sep/data/bodies.bin, mcp/sep/data/terms.bin
+  Content  : the English text of 1,719 SEP entries
+  Rights   : Each SEP entry is copyrighted by its individual author(s).
+             The SEP is published by the Metaphysics Research Lab,
+             Center for the Study of Language and Information,
+             Stanford University.  https://plato.stanford.edu
+  Note     : This software does not claim any rights over that text and does
+             not sublicense it. Every excerpt returned by the tools carries a
+             deep link back to the entry on plato.stanford.edu, and the entry
+             URL is preserved for every record. The SEP is freely readable
+             online; please cite the original entries, not this repository.
+
+SEP entry metadata
+------------------
+  Location : mcp/sep/data/entries.json, mcp/sep/data/atlas.json
+  Content  : entry titles, URLs, slugs, and topic labels
+  Rights   : Factual bibliographic metadata about SEP entries.
+
+Korean descriptions and relation notes
+--------------------------------------
+  Location : the `ko_desc` field in mcp/sep/data/entries.json,
+             the `note` field in mcp/sep/data/edges.json
+  Rights   : Original work by narim99. Covered by the Apache License.
+
+Embeddings
+----------
+  Location : mcp/sep/data/embeddings.bin
+  Content  : 1,719 x 384 float32 vectors
+  Model    : intfloat/multilingual-e5-small, via Xenova/transformers.js (MIT)
+
+
+================================================================================
+If you are affiliated with the SEP and would like the bundled entry text
+removed or its terms adjusted, please open an issue on this repository.
+================================================================================

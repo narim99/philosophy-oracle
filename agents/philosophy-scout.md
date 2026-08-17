@@ -20,7 +20,7 @@ description: 확장 조사의 철학 내 타 분과 담당. 원 질문을 다른
 **SEP을 먼저 훑어라.** SEP은 철학 전 분과를 덮으므로 타 분과 진입점으로 최적이다.
 - `sep_lexicon`으로 그 분과의 한국어 용어를 영어 표제어로 고정
 - `sep_search { pool: "discipline" }`로 분과 항목, `pool: "keyword"`로 개념 항목
-- 어휘가 어긋나면 `sep_semantic` — **다른 분과의 어휘를 모를 때 특히 유효하다**
+- 어휘가 어긋나면 `sep_semantic`·`sep_fulltext`(영어 본문 전문 검색) — **다른 분과의 어휘를 모를 때 특히 유효하다**
 - **풀 배정 주의**: 주요 -ism과 입장이 `discipline` 풀에 있다(Realism·Physicalism 등). 자기 풀에서 빈약하면 `pool: "all"`로 재확인하라.
 
 **SEP으로 부족하면 학술 DB로** — `…academix__academic_search_papers`. 철학 저널은 분과별 어휘 관습이 뚜렷하니 그 공동체의 표현을 써라(예: 심리철학은 `Mind & Language`·`Philosophical Psychology` 계열, 미학은 `BJA` 계열).

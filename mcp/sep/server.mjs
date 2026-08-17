@@ -15,6 +15,7 @@
 import { createInterface } from 'node:readline';
 import fs from 'node:fs';
 import path from 'node:path';
+import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 
 // ── 설정 ───────────────────────────────────────────────
@@ -353,6 +354,70 @@ async function sepGet({ slug }) {
 }
 
 /** 문장 분할 + 질의어 밀집도 랭킹 (한국어·영어 공용) */
+// ── SEP 영어 본문 (동봉) ───────────────────────────────
+//
+// 처음에는 본문이 없었다. 플러그인 데이터를 Supabase 테이블에서 떠 왔는데 그 테이블에
+// 본문 컬럼이 아예 없었기 때문이다(slug·title·url·type·ko_desc·topics·embedding뿐).
+// 그래서 어휘검색이 **제목·한국어 설명·topics에만** 걸렸고, 본문에만 나오는 말로는
+// 항목을 찾을 수 없었다. 웹앱에 있던 영어 전문을 `build-bodies.mjs`로 구워 동봉한다.
+//
+// 통짜로 안 읽는다. 항목마다 따로 deflate한 블록을 이어 붙였고, 색인에 오프셋이 있어서
+// **필요한 항목의 블록만** 푼다. 129MB 원문이 43MB로 줄고 메모리에는 한 항목만 올라온다.
+let _bodies = null;
+function bodiesDB() {
+  if (_bodies) return _bodies;
+  const idxPath = path.join(DATA_DIR, 'bodies.idx.json');
+  if (!fs.existsSync(idxPath)) return (_bodies = { ok: false });
+  _bodies = {
+    ok: true,
+    idx: JSON.parse(fs.readFileSync(idxPath, 'utf8')),
+    fd: fs.openSync(path.join(DATA_DIR, 'bodies.bin'), 'r'),
+  };
+  return _bodies;
+}
+
+/** 항목 하나의 영어 본문. 없으면 null. */
+function bodyOf(slug) {
+  const db = bodiesDB();
+  if (!db.ok) return null;
+  const rec = db.idx[slug];
+  if (!rec) return null;
+  const [off, len] = rec;
+  const buf = Buffer.alloc(len);
+  fs.readSync(db.fd, buf, 0, len, off);
+  return zlib.inflateRawSync(buf).toString('utf8');
+}
+
+// 검색용 단어 집합 — 본문을 다 풀지 않고 후보를 좁히는 데 쓴다.
+// 1,719개 항목의 본문을 전부 푸는 것(129MB)과 단어 집합만 푸는 것(12MB)은 열 배 차이다.
+let _terms = null;
+function termsDB() {
+  if (_terms) return _terms;
+  const idxPath = path.join(DATA_DIR, 'terms.idx.json');
+  if (!fs.existsSync(idxPath)) return (_terms = { ok: false });
+  _terms = {
+    ok: true,
+    idx: JSON.parse(fs.readFileSync(idxPath, 'utf8')),
+    fd: fs.openSync(path.join(DATA_DIR, 'terms.bin'), 'r'),
+    cache: new Map(),
+  };
+  return _terms;
+}
+
+function termsOf(slug) {
+  const db = termsDB();
+  if (!db.ok) return null;
+  if (db.cache.has(slug)) return db.cache.get(slug);
+  const rec = db.idx[slug];
+  if (!rec) return null;
+  const [off, len] = rec;
+  const buf = Buffer.alloc(len);
+  fs.readSync(db.fd, buf, 0, len, off);
+  const set = new Set(zlib.inflateRawSync(buf).toString('utf8').split(' '));
+  if (db.cache.size < 400) db.cache.set(slug, set); // 한 실행에서 같은 항목을 여러 번 본다
+  return set;
+}
+
 function rankSentences(text, terms, n) {
   const sentences = String(text || '')
     .split(/(?<=[.!?。])\s+|(?<=다\.)\s+/)
@@ -381,7 +446,7 @@ async function sepExcerpt({ slug, terms = [], n = 3 }) {
     source: 'sep_entries.ko_desc — 한국어 요약(SEP 원문 번역이 아니라 요약 서술)',
     warning:
       '이 text는 SEP 영어 원문이 아니다. 답변에 "SEP 원문 인용"으로 제시하지 마라. ' +
-      '영어 verbatim 인용과 진짜 text-fragment 딥링크가 필요하면 sep_source를 써라.',
+      '영어 verbatim 인용과 진짜 text-fragment 딥링크가 필요하면 sep_source를 써라(본문이 동봉돼 있어 네트워크 없이 즉시 나온다).',
     excerpts: chosen.map(({ s, hits }) => ({ text: s, matched_terms: hits })),
     sep_entry_url: e.url,
   };
@@ -411,18 +476,40 @@ function extractMainText(html) {
   return decodeEntities(s).replace(/\s+/g, ' ').trim();
 }
 
-/** SEP 원문 HTML을 직접 받아 영어 문장을 verbatim으로 뽑고 text-fragment 딥링크를 만든다 */
-async function sepSource({ slug, terms = [], n = 3 }) {
+/**
+ * SEP 영어 원문에서 verbatim 문장을 뽑고 text-fragment 딥링크를 만든다.
+ *
+ * 동봉 본문을 먼저 쓴다 — 네트워크가 필요 없고 빠르며 SEP 서버에 부담을 주지 않는다.
+ * 동봉본에 없는 항목일 때만 plato.stanford.edu에서 받아 온다.
+ */
+async function sepSource({ slug, terms = [], n = 3, prefer = 'bundled' }) {
   const e = await sepGet({ slug });
-  const res = await fetch(e.url, { headers: { 'User-Agent': 'philosophy-oracle-mcp/1.0' } });
-  if (!res.ok) throw new Error(`SEP 원문 요청 실패 ${res.status}: ${e.url}`);
-  const text = extractMainText(await res.text());
-  if (text.length < 200) throw new Error(`SEP 원문 본문 추출 실패(${text.length}자). url=${e.url}`);
+
+  let text = null;
+  let origin = null;
+  if (prefer !== 'live') {
+    const local = bodyOf(slug);
+    if (local && local.length >= 200) {
+      text = local;
+      origin = 'bundled';
+    }
+  }
+
+  if (!text) {
+    const res = await fetch(e.url, { headers: { 'User-Agent': 'philosophy-oracle-mcp/1.0' } });
+    if (!res.ok) throw new Error(`SEP 원문 요청 실패 ${res.status}: ${e.url}`);
+    text = extractMainText(await res.text());
+    if (text.length < 200) throw new Error(`SEP 원문 본문 추출 실패(${text.length}자). url=${e.url}`);
+    origin = 'live';
+  }
 
   const chosen = rankSentences(text, terms, n);
   return {
     slug, title: e.title, url: e.url, type: e.type,
-    source: 'SEP 원문 HTML (plato.stanford.edu) 실시간 추출',
+    source: origin === 'bundled'
+      ? '동봉된 SEP 영어 본문 (네트워크 없이 읽음)'
+      : 'SEP 원문 HTML (plato.stanford.edu) 실시간 추출',
+    origin,
     note: '아래 text는 SEP 원문의 정확한 부분문자열이다. 그대로 인용하라. deeplink는 원문의 그 구절로 바로 이동한다.',
     fetched_chars: text.length,
     excerpts: chosen.map(({ s, hits }) => ({
@@ -430,6 +517,86 @@ async function sepSource({ slug, terms = [], n = 3 }) {
       matched_terms: hits,
       deeplink: `${e.url}#:~:text=${encodeURIComponent(s.split(/\s+/).slice(0, 9).join(' '))}`,
     })),
+  };
+}
+
+/**
+ * 영어 본문 전체를 대상으로 검색한다 — `sep_search`가 못 찾는 것을 찾는다.
+ *
+ * `sep_search`는 제목·한국어 설명·topics만 본다. 그래서 **본문에서만 논의되는 것**은
+ * 안 걸린다. 예컨대 어떤 논증이 어느 항목에서 다뤄지는지 알고 싶은데 그 논증 이름이
+ * 표제어가 아니라면 `sep_search`로는 못 찾는다. 이 도구가 그 구멍을 메운다.
+ *
+ * 2단으로 간다. (1) 항목별 단어 집합으로 후보를 좁히고 — 본문을 풀지 않는다.
+ * (2) 살아남은 항목의 본문만 풀어 문맥 문장을 뽑는다.
+ */
+async function sepFulltext({ terms, pool = 'all', limit = 8, n = 2, require_all = false }) {
+  const given = (Array.isArray(terms) ? terms : [terms]).map(safeTerm).filter(Boolean);
+  if (!given.length) throw new Error('terms가 비어 있다. 검색어를 1개 이상 넣어라.');
+  if (!bodiesDB().ok) {
+    throw new Error('영어 본문이 동봉돼 있지 않다. build-bodies.mjs로 구워야 한다.');
+  }
+
+  const { terms: list, expansions, unmapped } = expandKorean(given);
+  // 본문은 영어다. 한국어 검색어가 영어로 안 바뀌면 걸릴 수가 없다.
+  const needles = list.map((t) => t.toLowerCase()).filter((t) => /[a-z]/.test(t));
+  if (!needles.length) {
+    return {
+      terms: given, expansions, unmapped, count: 0, results: [],
+      note: '영어로 바뀐 검색어가 없다. 본문은 영어이므로 영어 표제어가 필요하다 — sep_lexicon을 먼저 써라.',
+    };
+  }
+
+  // (1) 단어 집합으로 후보 좁히기
+  const cands = [];
+  for (const r of poolRows(pool)) {
+    const set = termsOf(r.slug);
+    if (!set) continue;
+    // 여러 단어로 된 검색어("scientific realism")는 첫 낱말로 먼저 거른 뒤 본문에서 확인한다.
+    const hits = needles.filter((nd) => set.has(nd.split(/\s+/)[0]));
+    if (require_all ? hits.length === needles.length : hits.length > 0) {
+      cands.push({ r, hits: hits.length });
+    }
+  }
+  cands.sort((a, b) => b.hits - a.hits || a.r.title.length - b.r.title.length
+    || a.r.slug.localeCompare(b.r.slug));
+
+  // (2) 상위 후보의 본문만 풀어 실제 등장 횟수를 세고 문맥을 뽑는다
+  const results = [];
+  for (const c of cands.slice(0, Math.max(limit * 3, 24))) {
+    const text = bodyOf(c.r.slug);
+    if (!text) continue;
+    const lc = text.toLowerCase();
+    const counts = {};
+    let total = 0;
+    for (const nd of needles) {
+      let k = 0, i = 0;
+      while ((i = lc.indexOf(nd, i)) >= 0) { k++; i += nd.length; }
+      if (k) { counts[nd] = k; total += k; }
+    }
+    if (!total) continue;
+    if (require_all && Object.keys(counts).length !== needles.length) continue;
+    results.push({
+      slug: c.r.slug, title: c.r.title, url: c.r.url, type: c.r.type,
+      ko_desc: c.r.ko_desc || null,
+      occurrences: counts,
+      total_occurrences: total,
+      excerpts: rankSentences(text, needles, n).map(({ s, hits }) => ({
+        text: s,
+        matched_terms: hits,
+        deeplink: `${c.r.url}#:~:text=${encodeURIComponent(s.split(/\s+/).slice(0, 9).join(' '))}`,
+      })),
+    });
+  }
+  results.sort((a, b) => b.total_occurrences - a.total_occurrences
+    || a.title.length - b.title.length || a.slug.localeCompare(b.slug));
+
+  return {
+    terms: given, expansions, unmapped, pool,
+    searched_entries: Object.keys(bodiesDB().idx).length,
+    count: results.length,
+    results: results.slice(0, limit),
+    note: '영어 본문 전문 검색이다. excerpts는 SEP 원문의 정확한 부분문자열이므로 그대로 인용해도 된다.',
   };
 }
 
@@ -976,6 +1143,25 @@ const TOOLS = [
     },
   },
   {
+    name: 'sep_fulltext',
+    description:
+      '**SEP 영어 본문 전문 검색.** `sep_search`는 제목·한국어설명·주제만 보므로 **본문에서만 논의되는 것은 못 찾는다** — ' +
+      '표제어가 아닌 논증·사례·인물 언급을 찾을 때 이걸 써라(예: 어느 항목이 "Fresnel"을 논하는가). ' +
+      '동봉된 영어 본문 1,719건을 뒤져 항목별 등장 횟수와 **원문 그대로의 문장**·딥링크를 돌려준다. 네트워크를 쓰지 않는다. ' +
+      '⚠ 본문은 영어다 — 한국어 검색어는 사전으로 보강되지만, 영어로 안 바뀌면 0건이 나온다.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        terms: { type: 'array', items: { type: 'string' }, description: '영어 검색어 배열. 여러 낱말로 된 구("scientific realism")도 된다.' },
+        pool: POOL_SCHEMA,
+        limit: { type: 'integer', description: '반환 항목 수(기본 8)' },
+        n: { type: 'integer', description: '항목당 발췌 문장 수(기본 2)' },
+        require_all: { type: 'boolean', description: '참이면 검색어가 **전부** 나오는 항목만(기본 거짓=하나라도)' },
+      },
+      required: ['terms'],
+    },
+  },
+  {
     name: 'sep_semantic',
     description:
       'SEP 의미검색(pgvector). 질문을 multilingual-e5-small로 임베딩해 코사인 유사도로 찾는다. ' +
@@ -1106,6 +1292,7 @@ const HANDLERS = {
   sep_semantic: sepSemantic,
   sep_excerpt: sepExcerpt,
   sep_source: sepSource,
+  sep_fulltext: sepFulltext,
   sep_evidence_view: sepEvidenceView,
   sep_atlas: sepAtlas,
   sep_neighbors: sepNeighbors,
@@ -1174,3 +1361,6 @@ rl.on('line', (line) => {
 process.on('uncaughtException', (e) => log('uncaught', e));
 process.on('unhandledRejection', (e) => log('unhandled', e));
 log(`SEP MCP 준비 — 자립형(동봉 데이터 ${DATA_DIR})`);
+log(bodiesDB().ok
+  ? `영어 본문 동봉: ${Object.keys(bodiesDB().idx).length}건 — sep_fulltext 사용 가능, sep_source는 네트워크 없이 동작`
+  : '영어 본문 없음 — sep_source는 plato.stanford.edu에서 받아 온다.');

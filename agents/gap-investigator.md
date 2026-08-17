@@ -26,7 +26,7 @@ description: 확장 조사의 간극 담당. 앞선 답변이 미결로 남긴 �
 
 해부 결과에 맞춰 자료를 찾는다. 도구는 간극의 성격에 따라 고른다.
 
-- **SEP 안에서 메울 수 있는 간극**이면 `sep_search`·`sep_semantic`·`sep_source`(번들 `sep` MCP). 앞선 조사가 놓친 항목이 있을 수 있다.
+- **SEP 안에서 메울 수 있는 간극**이면 `sep_search`·`sep_semantic`·`sep_fulltext`(영어 본문 전문 검색)·`sep_source`(번들 `sep` MCP). 앞선 조사가 놓친 항목이 있을 수 있다.
 - **SEP 밖 자료가 필요하면** `…academix__academic_search_papers`(OpenAlex·Semantic Scholar·CrossRef·DBLP)와 `…scientific-papers__*`(arXiv·PMC·CORE).
 - 국내·비학술 맥락은 `WebSearch`.
 

@@ -267,3 +267,15 @@ chmod 600 ~/.claude/philosophy-oracle/supabase.json
 - 갱신한 데이터를 저장소에도 반영하려면 평소처럼 `git add -A && git commit && git push`.
 
 한→영 사전은 `mcp/sep/build_lexicon.mjs`가 따로 만든다.
+
+## 라이선스
+
+**코드는 Apache-2.0**이다(`LICENSE`).
+
+**동봉된 SEP 영어 본문은 그 라이선스에 포함되지 않는다.** SEP 각 항목의 저작권은 저자에게 있고,
+이 저장소는 연구·학술 목적으로 본문을 함께 담고 있을 뿐 어떤 권리도 주장하지 않는다.
+자세한 구분은 `NOTICE`에 있다. **인용은 이 저장소가 아니라 SEP 원문을 해야 한다** — 도구가
+돌려주는 모든 발췌에는 `plato.stanford.edu`로 가는 딥링크가 붙어 있다.
+
+Stanford Encyclopedia of Philosophy — Metaphysics Research Lab, CSLI, Stanford University.
+https://plato.stanford.edu
